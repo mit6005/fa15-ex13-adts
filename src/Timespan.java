@@ -16,6 +16,10 @@ public class Timespan {
     // Safety from rep exposure:
     //   All fields are private and immutable.  (<=== oops, false!  there's rep exposure!)
 
+    private void checkRep() {
+        assert !end.before(start);
+    }
+    
     /**
      * Make a Timespan.
      * 
@@ -30,6 +34,7 @@ public class Timespan {
         }
         this.start = new Date(start.getTime());
         this.end = new Date(end.getTime());
+        checkRep();
     }
 
     /**
